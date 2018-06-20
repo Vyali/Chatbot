@@ -1,0 +1,69 @@
+
+<!------ Include the above in your HEAD tag ---------->
+{% load static %}
+<!DOCTYPE html>
+<html>
+ <head>
+   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+   <script src="//code.jquery.com/jquery-1.11.1.min.js"> </script>
+   <link rel="stylesheet" href="{% static 'style.css' %}">
+
+ </head>
+    <body>
+<div class = "col-sm-4 col-md-4"></div>
+
+<div class = "col-sm-4 col-md-4">
+  <div style = "overflow-y: scroll; height:400px;">
+  {% for res in response_msg_list %}
+   {% if forloop.counter0|divisibleby:2 %}
+  {% for u in res %}
+  <div class="container">
+  <span class="right">You</span>
+  <p>{{ u }}</p>
+
+</div>
+{% endfor %}
+{% else %}
+ {% for u in res %}
+<div class="container darker">
+<span class="left">Bot</span>
+  <p>{{ u }}</p>
+ </div>
+{% endfor %}
+{% endif %}
+
+{% endfor %}
+</div>
+<div>
+    <ul></ul>
+    <form action ="/takeinput" method = "POST" >
+      {% csrf_token %}
+    <div>
+        <div class="row">
+            <div class="text text-r" style="background:whitesmoke !important">
+                <input class="form-control" name ="inpmsg" placeholder="Type a message"/>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div style="padding:10px;">
+    <button class="btn-primary" type = "submit" style= "height:40px; width:60px; float: right; ">Sent</submit>
+    </div>
+  </form>
+
+
+</div>
+
+
+</div>
+
+
+ <div class = "col-sm-4 col-md-4"></div>
+
+
+
+    </body>
+</html>
